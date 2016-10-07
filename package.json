@@ -1,0 +1,16 @@
+{
+  "name": "s3-mulipart-upload",
+  "version": "1.0.0",
+  "description": "Testing multipart upload to S3",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.6.6",
+    "busboy": "^0.2.13",
+    "dotenv": "^2.0.0",
+    "hapi": "^15.1.1",
+    "inert": "^4.0.2"
+  }
+}

@@ -1,0 +1,18 @@
+<html>
+<body>
+  <h4>Regular Upload</h4>
+  <form action="/upload-regular" enctype="multipart/form-data" method="post">
+    <input type="text" name="keyPrefix" placeholder="s3 key prefix"><br>
+    <input type="file" name="uploadFile" multiple><br>
+    <input type="submit" value="Upload">
+  </form>
+
+  <h4>Multi Part Upload</h4>
+  <form action="/upload-multi" enctype="multipart/form-data" method="post">
+    <input type="text" name="keyPrefix" placeholder="s3 key prefix"><br>
+    <input type="file" name="uploadFile" multiple><br>
+    <input type="submit" value="Upload">
+  </form>
+
+</body>
+</html>

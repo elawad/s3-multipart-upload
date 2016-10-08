@@ -1,72 +1,22 @@
 <html>
 
 <head>
+  <title>S3 Multipart Upload</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    html > body {
-      font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
-      background-color: #efefef;
-    }
-    form {
-      margin: 0;
-    }
-    .mdl-layout__header-row {
-      justify-content: center;
-      padding: 0;
-    }
-    .mdl-layout__content {
-      display: flex;
-      margin-top: 2em;
-    }
-    .mdl-card {
-      width: 30em;
-    }
-    .mdl-card__title {
-      color: #fff;
-      height: 176px;
-      background: url(https://getmdl.io/assets/demos/welcome_card.jpg) center / cover;
-    }
-    .mdl-card__title-text {
-      justify-content: flex-end;
-      flex-grow: 1;
-    }
-    .mdl-card__menu a {
-      color: #fff !important;
-    }
-
-    /* File upload */
-    .mdl-button--file input {
-      cursor: pointer;
-      height: 100%;
-      right: 0;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      width: 300px;
-      z-index: 4;
-    }
-    .mdl-textfield--file .mdl-textfield__input {
-      box-sizing: border-box;
-      width: calc(100% - 32px);
-    }
-    .mdl-textfield--file .mdl-button--file {
-      right: 0;
-    }
-  </style>
 </head>
 
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-    <!-- <header class="mdl-layout__header">
+    <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">S3 Multipart Upload</span>
+        <!-- <span class="mdl-layout-title">S3 Multipart Upload</span> -->
       </div>
-    </header> -->
+    </header>
 
     <main class="mdl-layout__content">
       <div class="mdl-grid">
@@ -128,32 +78,7 @@
   </div>
 
   <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-  <script>
-    document.getElementById("uploadFile").onchange = function () {
-      // Show file names
-      var names = '';
-      for (let i = 0; i < this.files.length; i++) {
-        names += this.files[i].name + '\n';
-      }
-      document.getElementById("fileList").value = names;
-
-      // Toggle button if form has files
-      var button = document.getElementById("submitButton");
-      if (this.files.length > 0) {
-        button.removeAttribute("disabled");
-      } else {
-        button.setAttribute("disabled", "disabled");
-      }
-    };
-
-    // Toggle form submit; multi or regular upload
-    document.getElementById("isMultiPart").onchange = function () {
-      var label = document.getElementById("isMultiPart-label");
-      var isChecked = !label.classList.contains("is-checked");
-      var formAction = isChecked ? "/upload-multi" : "/upload-regular"
-      document.getElementById("uploadForm").action = formAction;
-    };
-  </script>
+  <script src="/js/scripts.js"></script>
 </body>
 
 </html>

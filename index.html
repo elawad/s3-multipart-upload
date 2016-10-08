@@ -1,18 +1,159 @@
 <html>
+
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html > body {
+      font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
+      background-color: #efefef;
+    }
+    form {
+      margin: 0;
+    }
+    .mdl-layout__header-row {
+      justify-content: center;
+      padding: 0;
+    }
+    .mdl-layout__content {
+      display: flex;
+      margin-top: 2em;
+    }
+    .mdl-card {
+      width: 30em;
+    }
+    .mdl-card__title {
+      color: #fff;
+      height: 176px;
+      background: url(https://getmdl.io/assets/demos/welcome_card.jpg) center / cover;
+    }
+    .mdl-card__title-text {
+      justify-content: flex-end;
+      flex-grow: 1;
+    }
+    .mdl-card__menu a {
+      color: #fff !important;
+    }
+
+    /* File upload */
+    .mdl-button--file input {
+      cursor: pointer;
+      height: 100%;
+      right: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 300px;
+      z-index: 4;
+    }
+    .mdl-textfield--file .mdl-textfield__input {
+      box-sizing: border-box;
+      width: calc(100% - 32px);
+    }
+    .mdl-textfield--file .mdl-button--file {
+      right: 0;
+    }
+  </style>
+</head>
+
 <body>
-  <h4>Regular Upload</h4>
-  <form action="/upload-regular" enctype="multipart/form-data" method="post">
-    <input type="text" name="keyPrefix" placeholder="s3 key prefix"><br>
-    <input type="file" name="uploadFile" multiple><br>
-    <input type="submit" value="Upload">
-  </form>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-  <h4>Multi Part Upload</h4>
-  <form action="/upload-multi" enctype="multipart/form-data" method="post">
-    <input type="text" name="keyPrefix" placeholder="s3 key prefix"><br>
-    <input type="file" name="uploadFile" multiple><br>
-    <input type="submit" value="Upload">
-  </form>
+    <!-- <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">S3 Multipart Upload</span>
+      </div>
+    </header> -->
 
+    <main class="mdl-layout__content">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+
+          <div class="mdl-card mdl-shadow--2dp card-container">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">S3 Multipart Upload</h2>
+            </div>
+
+            <form action="/upload-multi" id="uploadForm" enctype="multipart/form-data" method="post">
+              <div class="mdl-card__supporting-text">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" name="keyPrefix" id="keyPrefix">
+                  <label class="mdl-textfield__label" for="keyPrefix">File Prefix</label>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+                  <textarea class="mdl-textfield__input" placeholder="Files" type="text" id="fileList" readonly></textarea>
+                  <div class="mdl-button mdl-button--icon mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--file">
+                    <i class="material-icons">attach_file</i>
+                    <input type="file" name="uploadFile" id="uploadFile" multiple>
+                  </div>
+                </div>
+
+                <label id="isMultiPart-label" for="isMultiPart" class="mdl-switch mdl-js-switch mdl-js-ripple-effect ">
+                  <input type="checkbox" class="mdl-switch__input" name="isMultiPart" id="isMultiPart" checked>
+                  <span class="mdl-switch__label">Use Multipart</span>
+                </label>
+              </div>
+
+              <div class="mdl-card__actions mdl-card--border">
+                <button
+                  id="submitButton"
+                  type="submit"
+                  disabled="disabled"
+                  title="Upload Files"
+                  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                >
+                  <i class="material-icons">file_upload</i>
+                  <span>&nbsp;Upload</span>
+                </button>
+              </div>
+
+              <div class="mdl-card__menu">
+                <a href="/"
+                  title="Reset Form"
+                  class="mdl-button mdl-button--accent mdl-js-button mdl-button--icon mdl-js-ripple-effect"
+                >
+                  <i class="material-icons">clear_all</i>
+                </a>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <script>
+    document.getElementById("uploadFile").onchange = function () {
+      // Show file names
+      var names = '';
+      for (let i = 0; i < this.files.length; i++) {
+        names += this.files[i].name + '\n';
+      }
+      document.getElementById("fileList").value = names;
+
+      // Toggle button if form has files
+      var button = document.getElementById("submitButton");
+      if (this.files.length > 0) {
+        button.removeAttribute("disabled");
+      } else {
+        button.setAttribute("disabled", "disabled");
+      }
+    };
+
+    // Toggle form submit; multi or regular upload
+    document.getElementById("isMultiPart").onchange = function () {
+      var label = document.getElementById("isMultiPart-label");
+      var isChecked = !label.classList.contains("is-checked");
+      var formAction = isChecked ? "/upload-multi" : "/upload-regular"
+      document.getElementById("uploadForm").action = formAction;
+    };
+  </script>
 </body>
+
 </html>

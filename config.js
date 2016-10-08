@@ -4,7 +4,7 @@ module.exports = {
   maxFileSize: 1024 * 1024 * 700, // Mb
 
   aws: {
-    region: 'us-east-1',
+    region: process.env.AWS_REGION || 'us-east-1',
 
     s3: {
       partSize: 1024 * 1024 * 20, // 5Mb min

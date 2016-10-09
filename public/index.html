@@ -28,7 +28,9 @@
               <h2 class="mdl-card__title-text">S3 Multipart Upload</h2>
             </div>
 
-            <form action="/upload-multi" id="uploadForm" enctype="multipart/form-data" method="post">
+            <form onsubmit="submitForm();" action="/upload-multi"
+              method="post" id="uploadForm" enctype="multipart/form-data"
+            >
               <div class="mdl-card__supporting-text">
 
                 <div class="mdl-button--file">
@@ -38,6 +40,8 @@
                     <input type="file" name="uploadFile" id="uploadFile" multiple>
                   </div>
                 </div>
+
+                <div style="overflow-x: auto;">
                 <table class="mdl-data-table mdl-js-data-table">
                   <thead>
                     <tr>
@@ -48,6 +52,7 @@
                   </thead>
                   <tbody id="fileTable"></tbody>
                 </table>
+                </div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" name="keyPrefix" id="keyPrefix">
@@ -61,11 +66,7 @@
               </div>
 
               <div class="mdl-card__actions mdl-card--border">
-                <button
-                  id="submitButton"
-                  type="submit"
-                  disabled="disabled"
-                  title="Upload Files"
+                <button id="submitButton" type="submit" disabled="disabled" title="Upload Files"
                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                 >
                   <i class="material-icons">file_upload</i>
@@ -91,6 +92,7 @@
 
   <script defer type="text/javascript" src="https://code.getmdl.io/1.2.1/material.min.js"></script>
   <script type="text/javascript" src="/js/scripts.js"></script>
+  <script type="text/javascript" src="/js/xhrUpload.js"></script>
 </body>
 
 </html>

@@ -1,26 +1,25 @@
 (function () {
   "use strict";
 
+  // List file info on table
   document.getElementById("uploadFile").onchange = function () {
     // Clear table body rows
     var table = document.getElementById("fileTable");
-    while(table.rows.length) { table.deleteRow(0); }
+    while(table.rows.length) {
+      table.deleteRow(0);
+    }
 
-    var length = this.files.length;
-    for (var i = 0; i < length; i++) {
-      // Create table row
-      var row   = table.insertRow();
-      var tdData = createRowData(
-        this.files[i].name, this.files[i].type,
-        formatSize(this.files[i].size)
-      );
-      // Insert row data
-      row.innerHTML = tdData;
+    // Generate row for each file
+    var files = this.files;
+    for (var file of files) {
+      var row = table.insertRow();
+      var size = formatSize(file.size);
+      row.innerHTML = createRowData(file.name, file.type, size);
     }
 
     // Toggle submit button if form has files
     var button = document.getElementById("submitButton");
-    if (length > 0) {
+    if (files.length > 0) {
       button.removeAttribute("disabled");
     } else {
       button.setAttribute("disabled", "disabled");

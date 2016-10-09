@@ -30,17 +30,28 @@
 
             <form action="/upload-multi" id="uploadForm" enctype="multipart/form-data" method="post">
               <div class="mdl-card__supporting-text">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" name="keyPrefix" id="keyPrefix">
-                  <label class="mdl-textfield__label" for="keyPrefix">File Prefix</label>
-                </div>
 
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
-                  <textarea class="mdl-textfield__input" placeholder="Files" type="text" id="fileList" readonly></textarea>
-                  <div class="mdl-button mdl-button--icon mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--file">
+                <div class="mdl-button--file">
+                  <span>File List</span>
+                  <div class="mdl-button mdl-button--icon mdl-js-button mdl-button--colored mdl-js-ripple-effect">
                     <i class="material-icons">attach_file</i>
                     <input type="file" name="uploadFile" id="uploadFile" multiple>
                   </div>
+                </div>
+                <table class="mdl-data-table mdl-js-data-table">
+                  <thead>
+                    <tr>
+                      <th class="mdl-data-table__cell--non-numeric">File Name</th>
+                      <th class="mdl-data-table__cell--non-numeric">Type</th>
+                      <th>Size</th>
+                    </tr>
+                  </thead>
+                  <tbody id="fileTable"></tbody>
+                </table>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" name="keyPrefix" id="keyPrefix">
+                  <label class="mdl-textfield__label" for="keyPrefix">File Prefix</label>
                 </div>
 
                 <label id="isMultiPart-label" for="isMultiPart" class="mdl-switch mdl-js-switch mdl-js-ripple-effect ">

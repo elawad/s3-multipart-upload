@@ -2,10 +2,10 @@
   'use strict';
 
   document.getElementById("uploadFile").onchange = function () {
-    const length = this.files.length;
+    var length = this.files.length;
     // Show file names
     var names = '';
-    for (let i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       names += this.files[i].name + '\n';
     }
     names = names.trim();
@@ -24,7 +24,8 @@
   document.getElementById("isMultiPart").onchange = function () {
     var label = document.getElementById("isMultiPart-label");
     var isChecked = !label.classList.contains("is-checked");
-    var formAction = isChecked ? "/upload-multi" : "/upload-regular"
+    var formAction = isChecked ? "/upload-multi" : "/upload-regular";
+
     document.getElementById("uploadForm").action = formAction;
   };
 

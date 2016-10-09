@@ -19,7 +19,7 @@ const server = new Hapi.Server({
 });
 
 server.connection({
-  host: 'localhost',
+  host: config.host,
   port: config.port,
   routes: {
     payload: { maxBytes: config.maxFileSize }

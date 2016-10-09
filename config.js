@@ -1,4 +1,5 @@
 module.exports = {
+  host: process.env.HOST || 'localhost',
   port: process.env.PORT || 8000,
 
   maxFileSize: 1024 * 1024 * 700, // Mb

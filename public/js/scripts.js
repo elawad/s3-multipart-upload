@@ -2,16 +2,18 @@
   'use strict';
 
   document.getElementById("uploadFile").onchange = function () {
+    const length = this.files.length;
     // Show file names
     var names = '';
-    for (let i = 0; i < this.files.length; i++) {
+    for (let i = 0; i < length; i++) {
       names += this.files[i].name + '\n';
     }
+    names = names.trim();
     document.getElementById("fileList").value = names;
 
     // Toggle button if form has files
     var button = document.getElementById("submitButton");
-    if (this.files.length > 0) {
+    if (length > 0) {
       button.removeAttribute("disabled");
     } else {
       button.setAttribute("disabled", "disabled");

@@ -13,13 +13,10 @@ form {
   justify-content: center;
   padding: 0;
 }*/
-.mdl-layout__content {
-  display: flex;
-  margin-top: 1em;
-}
 .mdl-card {
   max-width: 30em;
-  width: 100%
+  width: 100%;
+  margin: 0 auto;
 }
 .mdl-card__title {
   color: #fff;

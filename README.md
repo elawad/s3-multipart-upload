@@ -8,7 +8,7 @@
 /* Remove comments before using */
 AWS_ACCESS_KEY_ID     = ''  // AWS access key
 AWS_SECRET_ACCESS_KEY = ''  // AWS secret
-S3_BUCKET             = ''  // bucket name
+S3_BUCKET             = ''  // S3 bucket name
 /* optional */
 S3_FOLDER             = ''  // path/to/folder
 AWS_REGION            = ''  // defaults to us-east-1

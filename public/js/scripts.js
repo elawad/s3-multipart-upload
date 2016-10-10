@@ -11,7 +11,8 @@
 
     // Generate row for each file
     var files = this.files;
-    for (var file of files) {
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
       var row = table.insertRow();
       var size = formatSize(file.size);
       row.innerHTML = createRowData(file.name, file.type, size);

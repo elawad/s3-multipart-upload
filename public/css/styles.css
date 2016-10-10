@@ -34,13 +34,7 @@ form {
   width: 100%;
 }
 
-/* File upload */
-/*.mdl-button--file {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}*/
-.mdl-button--file input {
+.button-file input {
   cursor: pointer;
   height: 100%;
   right: 0;
@@ -49,4 +43,15 @@ form {
   top: 0;
   /*width: 300px;*/
   z-index: 4;
+}
+.input-section {
+  display: flex;
+  align-items: center;
+}
+.input-section .mdl-switch {
+  max-width: 9.4em;
+  float: right;
+}
+.table-section {
+  overflow-x: auto;
 }

@@ -37,10 +37,10 @@
   };
 
   function createRowData(name, type, size) {
-    var strClass = "mdl-data-table__cell--non-numeric";
+    var strClass = "mdl-data-table__cell--non-numeric ellipsis";
     var tdData = `
-      <td class="mdl-data-table__cell--non-numeric">${name}</td>
-      <td class=${strClass}>${type}</td>
+      <td class="${strClass}">${name}</td>
+      <td class="${strClass}">${type}</td>
       <td>${size}</td>
     `;
     return tdData;

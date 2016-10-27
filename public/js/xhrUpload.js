@@ -5,6 +5,10 @@
   document.getElementById("uploadForm").onsubmit = function(e) {
     e.preventDefault();
 
+    if (document.getElementById("uploadFile").files.length < 1) {
+      return false;
+    }
+
     var xhr = new XMLHttpRequest();
     var form = document.getElementById("uploadForm");
     var formAction = form.action;

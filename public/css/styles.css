@@ -2,38 +2,38 @@ html > body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
   background-color: #efefef;
 }
-form {
-  margin: 0;
-}
-.mdl-layout__header {
-  position: relative;
-  background-image: url(https://getmdl.io/templates/portfolio/images/header-bg.jpg);
-}
-/*.mdl-layout__header-row {
-  justify-content: center;
-  padding: 0;
-}*/
+
+/* MDL Override */
 .mdl-card {
-  max-width: 30em;
+  max-width: 32em;
   width: 100%;
   margin: 0 auto;
 }
 .mdl-card__title {
   color: #fff;
-  height: 176px;
-  background: url(https://getmdl.io/assets/demos/welcome_card.jpg) center / cover;
-}
-.mdl-card__title-text {
-  justify-content: flex-end;
-  flex-grow: 1;
+  height: 11em;
+  background: url(http://i.imgur.com/EyV48dk.jpg) center / cover;
 }
 .mdl-card__menu a {
   color: #fff !important;
 }
+.mdl-card__supporting-text {
+  width: 100%;
+  box-sizing: border-box;
+}
 .mdl-data-table {
   width: 100%;
 }
+.mdl-card__actions {
+  padding-left: 1em;
+}
+/* End MDL Override */
 
+.button-file {
+  position: absolute;
+  top: 6.5em;
+  right: 0.6em;
+}
 .button-file input {
   cursor: pointer;
   height: 100%;
@@ -41,7 +41,6 @@ form {
   opacity: 0;
   position: absolute;
   top: 0;
-  /*width: 300px;*/
   z-index: 4;
 }
 .input-section {
@@ -54,4 +53,12 @@ form {
 }
 .table-section {
   overflow-x: auto;
+}
+
+/* Helper Classes */
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 14em;
 }

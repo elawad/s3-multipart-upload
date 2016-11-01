@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css" />
+  <link rel="stylesheet" href="/lib/nprogress/nprogress.css"/>
   <link rel="stylesheet" href="/css/styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,6 +14,7 @@
 <body>
   <div class="mdl-layout mdl-js-layout">
     <main class="mdl-layout__content">
+
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
 
@@ -53,14 +55,16 @@
                     <tbody id="fileTable"></tbody>
                   </table>
                 </div>
-                <button title="Attach Files" class="button-file mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--fab mdl-button--mini-fab">
+                <button title="Attach Files"
+                  class="button-file mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--fab mdl-button--mini-fab"
+                >
                   <i class="material-icons">add</i>
                   <input type="file" name="uploadFile" id="uploadFile" multiple>
                 </button>
 
               </div>
 
-              <div class="mdl-card__actions mdl-card--border">
+              <div id="actionsContainer" class="mdl-card__actions mdl-card--border">
                 <button id="submitButton" type="submit" disabled="disabled" title="Upload Files"
                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                 >
@@ -71,8 +75,7 @@
             </form>
 
             <div class="mdl-card__menu">
-              <a href="/"
-                title="Reload"
+              <a href="/" title="Reload"
                 class="mdl-button mdl-button--accent mdl-js-button mdl-button--icon mdl-js-ripple-effect"
               >
                 <i class="material-icons">clear_all</i>
@@ -83,10 +86,17 @@
 
         </div>
       </div>
+
+      <div id="toastMessage" class="mdl-snackbar mdl-js-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+      </div>
+
     </main>
   </div>
 
   <script defer type="text/javascript" src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.js"></script>
   <script type="text/javascript" src="/js/scripts.js"></script>
   <script type="text/javascript" src="/js/xhrUpload.js"></script>
 

@@ -49,10 +49,12 @@ html > body {
   display: flex;
   align-items: center;
 }
+/*
 .input-section .mdl-switch {
   max-width: 9.4em;
   float: right;
 }
+*/
 .table-section {
   overflow-x: auto;
 }

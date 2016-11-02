@@ -11,8 +11,10 @@ document.getElementById("uploadFile").onchange = function () {
 document.getElementById("isMultiPart").onchange = function () {
   var label = document.getElementById("isMultiPart-label");
   var isChecked = !label.classList.contains("is-checked");
+  var onOff = isChecked ? "On" : "Off";
   var formAction = isChecked ? "/upload-multi" : "/upload-regular";
 
+  document.getElementById("isMultiPart-onOff").innerHTML = onOff;
   document.getElementById("uploadForm").action = formAction;
 };
 

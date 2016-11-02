@@ -30,15 +30,16 @@
               <div class="mdl-card__supporting-text">
 
                 <div class="input-section">
-                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" name="keyPrefix" id="keyPrefix">
-                    <label class="mdl-textfield__label" for="keyPrefix">File Prefix</label>
-                  </div>
                   <div class="mdl-textfield">
                     <label id="isMultiPart-label" for="isMultiPart" class="mdl-switch mdl-js-switch mdl-js-ripple-effect ">
                       <input type="checkbox" class="mdl-switch__input" name="isMultiPart" id="isMultiPart" checked>
-                      <span class="mdl-switch__label">Use Multipart</span>
+                      <span class="mdl-switch__label">Multipart <span id="isMultiPart-onOff">On</span></span>
                     </label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" name="keyPrefix" id="keyPrefix">
+                    <label class="mdl-textfield__label" for="keyPrefix">File Prefix</label>
                   </div>
                 </div>
 

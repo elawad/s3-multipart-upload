@@ -1,14 +1,10 @@
 // List file info on table
 document.getElementById("uploadFile").onchange = function () {
-  clearTable();
   var files = this.files;
+  addFilesToTable(files);
 
-  // Generate row for each file
-  addFilesToTable(this.files);
-
-  // Toggle submit button if form has files
-  if (files.length > 0) enableSubmit();
-  else enableSubmit(false);
+  var isDisabled = files.length < 1;
+  disableSubmit(isDisabled);
 };
 
 // Change form action on toggle; multi or regular upload
@@ -21,14 +17,15 @@ document.getElementById("isMultiPart").onchange = function () {
 };
 
 // Submit form with progress
-document.getElementById("uploadForm").onsubmit = function(e) {
-  e.preventDefault();
+document.getElementById("uploadForm").onsubmit = function(evt) {
+  evt.preventDefault();
 
   var fileCount = document.getElementById("uploadFile").files.length;
 
   if (fileCount < 1) return false;
 
-  enableSubmit(false);
+  disableSubmit();
+  disableFileAdd();
 
   xhrUpload(function(error) {
     resetForm();
@@ -38,38 +35,55 @@ document.getElementById("uploadForm").onsubmit = function(e) {
 
 function resetForm() {
   clearTable();
-  enableSubmit(false);
-
+  disableSubmit();
+  disableFileAdd(false);
   document.getElementById("uploadForm").reset();
 };
 
-function enableSubmit(enabled = true) {
+function disableSubmit(isDisabled) {
   var button = document.getElementById("submitButton");
-  if (enabled) {
+
+  if (isDisabled === false) {
     button.removeAttribute("disabled");
   } else {
     button.setAttribute("disabled", "disabled");
   }
 };
 
+function disableFileAdd(isDisabled) {
+  var addButton = document.getElementById("addButton");
+  var uploadFile = document.getElementById("uploadFile");
+
+  if (isDisabled === false) {
+    addButton.removeAttribute("disabled");
+    uploadFile.style.display = null;
+  } else {
+    addButton.setAttribute("disabled", "disabled");
+    uploadFile.style.display = "none";
+  }
+};
+
 function showToast(error, fileCount) {
   var notification = document.getElementById("toastMessage");
   var s = (fileCount > 1) ? 's' : '';
-  var msg = error ? error : `${fileCount} file${s} uploaded.`;
+  var msg = error ? error : `${fileCount} file${s} uploaded`;
   var data = { message: msg };
 
   notification.MaterialSnackbar.showSnackbar(data);
-}
+};
 
 function clearTable() {
   var table = document.getElementById("fileTable");
+
   while(table.rows.length) {
     table.deleteRow(0);
   }
 };
 
 function addFilesToTable(files) {
+  clearTable();
   var table = document.getElementById("fileTable");
+
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     var row = table.insertRow();
@@ -92,10 +106,12 @@ function createRowHtml(file) {
 
 function formatSize(size) {
   var fileSize = '';
+
   if (size > 1024 * 1024) {
     fileSize = (Math.round(size * 100 / (1024 * 1024)) / 100).toString() + ' Mb';
   } else {
     fileSize = (Math.round(size * 100 / 1024) / 100).toString() + ' Kb';
   }
+
   return fileSize;
 };

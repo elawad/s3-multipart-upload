@@ -1,8 +1,8 @@
 function xhrUpload(callback) {
   NProgress.configure({
+    minimum: 0,
     trickle: false,
-    // showSpinner: false,
-    // parent: '#actionsContainer',
+    parent: '#actionsContainer',
   });
   NProgress.start();
 
@@ -12,7 +12,10 @@ function xhrUpload(callback) {
   var formData = new FormData(form);
 
   xhr.upload.addEventListener("progress", uploadProgress, false);
-  xhr.addEventListener("load", evt => uploadComplete(evt, callback), false);
+  xhr.addEventListener("load", function(evt) {
+    uploadComplete(evt, callback);
+  }, false);
+
   // xhr.addEventListener("error", uploadFailed, false);
   // xhr.addEventListener("abort", uploadCanceled, false);
 

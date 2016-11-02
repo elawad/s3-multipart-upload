@@ -35,13 +35,15 @@ html > body {
   right: 0.6em;
 }
 .button-file input {
-  cursor: pointer;
   height: 100%;
   right: 0;
   opacity: 0;
   position: absolute;
   top: 0;
   z-index: 4;
+}
+.button-file input:not([disabled]) {
+  cursor: pointer;
 }
 .input-section {
   display: flex;
